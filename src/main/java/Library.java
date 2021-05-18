@@ -21,4 +21,7 @@ public class Library {
         }
     }
 
+    public void removeBook(Book book) {
+        books.remove(book);
+    }
 }
