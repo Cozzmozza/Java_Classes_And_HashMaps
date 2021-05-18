@@ -40,4 +40,10 @@ public class LibraryTest {
         library.removeBook(newBook);
         assertEquals(0, library.countBooks());
     }
+
+    @Test
+    public void addingBookAddsToGenreCount(){
+        library.addBook(newBook);
+        assertEquals(1, library.getGenreCount(newBook));
+    }
 }
