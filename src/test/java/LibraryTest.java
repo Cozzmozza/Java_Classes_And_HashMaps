@@ -10,7 +10,7 @@ public class LibraryTest {
 
     @Before
     public void before(){
-        library = new Library();
+        library = new Library(3);
         newBook = new Book("The End Of Jeffville", "Jeff Jefferson", "Sci-fi");
     }
 
@@ -18,10 +18,19 @@ public class LibraryTest {
     public void canCountBooks(){
         assertEquals(0, library.countBooks());
     }
-    
+
     @Test
-    public void canAddNewBook(){
+    public void canAddBook(){
         library.addBook(newBook);
         assertEquals(1, library.countBooks());
+    }
+
+    @Test
+    public void cannotAddBookIfStockIsFull(){
+        library.addBook(newBook);
+        library.addBook(newBook);
+        library.addBook(newBook);
+        library.addBook(newBook);
+        assertEquals(3, library.countBooks());
     }
 }
