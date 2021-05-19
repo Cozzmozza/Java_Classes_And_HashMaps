@@ -42,8 +42,23 @@ public class LibraryTest {
     }
 
     @Test
-    public void addingBookAddsToGenreCount(){
+    public void canAddGenreEntryToGenreHashMap(){
+        library.addGenre(newBook);
+        assertEquals(1, library.getGenreCount(newBook));
+    }
+
+    @Test
+    public void addNewBookCallsAddGenreMethod(){
         library.addBook(newBook);
         assertEquals(1, library.getGenreCount(newBook));
+    }
+
+
+//    The following test is failing. The addGenre is fine, but removeGenre is not working
+    @Test
+    public void canRemoveGenreEntryFromGenreHashMap(){
+        library.addGenre(newBook);
+        library.removeGenre(newBook);
+        assertEquals(0, library.getGenreCount(newBook));
     }
 }
