@@ -69,9 +69,9 @@ public class Library {
     public void removeGenre(Book book) {
         String genre = book.getGenre();
 //        We are assuming the genre is in the genre list already, and we don't need to check if its there first
-//        Grab the value of the genre key
+//        Grab the value of the genre key assuming it exists
         int value = genres.get(genre);
-//        Remove one from teh value
+//        Remove one from the value
         int newValue = value - 1;
 //        if newValue = 0, no more genres in stock, remove the key value pair from the hashmap
         if (newValue == 0){
@@ -82,4 +82,8 @@ public class Library {
             genres.replace(genre, newValue);
         }
     }
+//    THIS is currently NOT working
+//    It DOES work if newValue > 0, i.e. if we have 2 genres, and remove one of them
+//    But if newValue is now equal to 0, it doesn't even get to the if statements
+//    It throws an error of NullPointerException
 }

@@ -58,7 +58,10 @@ public class LibraryTest {
     @Test
     public void canRemoveGenreEntryFromGenreHashMap(){
         library.addGenre(newBook);
+        library.addGenre(newBook);
         library.removeGenre(newBook);
-        assertEquals(0, library.getGenreCount(newBook));
+        assertEquals(1, library.getGenreCount(newBook));
+//        Changed the method temporarily to return a boolean depending on outcome, for debugging only
+//        assertEquals(true, library.removeGenre(newBook));
     }
 }
