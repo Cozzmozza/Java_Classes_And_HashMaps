@@ -53,15 +53,21 @@ public class LibraryTest {
         assertEquals(1, library.getGenreCount(newBook));
     }
 
-
-//    The following test is failing. The addGenre is fine, but removeGenre is not working
     @Test
-    public void canRemoveGenreEntryFromGenreHashMap(){
+    public void canRemoveGenreEntryFromGenreHashMapWithTwoGenreCounts(){
         library.addGenre(newBook);
         library.addGenre(newBook);
         library.removeGenre(newBook);
         assertEquals(1, library.getGenreCount(newBook));
-//        Changed the method temporarily to return a boolean depending on outcome, for debugging only
-//        assertEquals(true, library.removeGenre(newBook));
+    }
+
+
+//    The following test is failing, due to a NullPointerException, with our new count value being 0
+    @Test
+    public void canRemoveGenreEntryFromGenreHashMapWitOneGenreCount(){
+        library.addGenre(newBook);
+        library.removeGenre(newBook);
+        assertEquals(0, library.getGenreCount(newBook));
+//        We need to change this test, as it can't check for a genreCount for a null entry
     }
 }

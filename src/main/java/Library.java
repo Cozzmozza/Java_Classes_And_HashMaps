@@ -53,15 +53,16 @@ public class Library {
 //            if hashmap contains the key 'genre'
         if (genres.containsKey(genre)){
 //                Grab the value of that key
-            int value = genres.get(genre);
+            Integer value = genres.get(genre);
 //                set the value to be value + 1
-            int newValue = value + 1;
+            Integer newValue = value + 1;
 //                update the key with the new value
             genres.replace(genre, newValue);
         }
 //            else if the key does not exist, make it, and set the count to 1
         else {
-            genres.put(genre, 1);
+            Integer initialCount = 1;
+            genres.put(genre, initialCount);
         }
 
     }
@@ -70,12 +71,14 @@ public class Library {
         String genre = book.getGenre();
 //        We are assuming the genre is in the genre list already, and we don't need to check if its there first
 //        Grab the value of the genre key assuming it exists
-        int value = genres.get(genre);
+        Integer value = genres.get(genre);
 //        Remove one from the value
-        int newValue = value - 1;
+        Integer newValue = value - 1;
+        System.out.println(newValue); // This is printing 0 okay...
 //        if newValue = 0, no more genres in stock, remove the key value pair from the hashmap
         if (newValue == 0){
-            genres.remove(genre);
+//            genres.remove(genre);
+            genres.replace(genre, newValue);
         }
 //        else just remove one from the genre stock by giving the genre the new value
         else {
@@ -84,6 +87,15 @@ public class Library {
     }
 //    THIS is currently NOT working
 //    It DOES work if newValue > 0, i.e. if we have 2 genres, and remove one of them
-//    But if newValue is now equal to 0, it doesn't even get to the if statements
-//    It throws an error of NullPointerException
+//    But if newValue is now equal to 0, it doesn't even get to the if statements before throwing an error
+//    (We know it doesn't get to the if, because I changed the fn to return booleans at the conditionals, and it didn't return any during the test)
+//    Error is 'NullPointerException'
+//    I've then tried converting all 'int' in addGenre and removeGenre, to 'Integer', still same error
+//    When the newValue is 0, this prints okay
+//    Is it something to do with genres.remove(genre) afterall?
+//    Is this just removing the value/setting it to null, then we are trying to read it, and its null?
+
+//    YES! THAT'S IT WORKING..ish
+        // So.... the test was getting a count from something that didn't exist. That was the error.
+        // So the test really wants to check the entry doesn't exist in the count
 }
