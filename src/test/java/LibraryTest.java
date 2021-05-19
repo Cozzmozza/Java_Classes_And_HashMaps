@@ -67,7 +67,7 @@ public class LibraryTest {
     public void canRemoveGenreEntryFromGenreHashMapWitOneGenreCount(){
         library.addGenre(newBook);
         library.removeGenre(newBook);
-        assertEquals(0, library.getGenreCount(newBook));
+        assertEquals(true, library.checkRemoved(newBook));
 //        We need to change this test, as it can't check for a genreCount for a null entry
     }
 }
